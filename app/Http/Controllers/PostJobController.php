@@ -10,6 +10,19 @@ use Illuminate\Support\Str;
 
 class PostJobController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('isPremiumUser')->only(['create', 'store']);
+    }
+
+    public function index()
+    {
+        $jobs = Listing::where('user_id', auth()->user()->id)->get();
+        return view('job.index', compact('jobs'));
+    }
+
     public function create()
     {
         return view('job.create');
@@ -53,5 +66,16 @@ class PostJobController extends Controller
 
         $listing->update($request->except('feature_image'));
         return redirect()->back()->with('success', 'Job updated successfully');
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $listing = Listing::find($id);
+            $listing->delete();
+            return redirect()->back()->with('success', 'Job deleted successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
     }
 }
