@@ -22,7 +22,7 @@ use Stripe\Subscription;
 */
 
 Route::get('/', function () {
-    return redirect('/login');
+    return view('home');
 });
 
 
@@ -42,6 +42,10 @@ Route::post('/register/employer', [UserController::class, 'storeEmployer'])->nam
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/login', [UserController::class, 'postLogin'])->name('login.post');
 route::post('/logout', [UserController::class, 'logout'])->name('logout');
+
+Route::get('user/profile', [UserController::class, 'profile'])->name('user.profile');
+Route::get('user/profile/seeker', [UserController::class, 'seekerProfile'])->name('user.profile.seeker');
+Route::post('user/update/profile', [UserController::class, 'updateProfile'])->name('user.update.profile');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('verified')->name('dashboard');
 Route::get('/verify', [DashboardController::class, 'verify'])->name('verification.notice');
