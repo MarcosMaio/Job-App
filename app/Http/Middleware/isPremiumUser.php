@@ -15,6 +15,10 @@ class isPremiumUser
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+        if (auth()->user()->user_type == 'employer' || auth()->user()->biling_ends > now()) {
+            return $next($request);
+        } else {
+            abort(401);
+        }
     }
 }
