@@ -39,6 +39,10 @@
                         </li>
                     @else
                         <li class="nav-item">
+                            <a class="nav-link active" aria-current="page"
+                                href="{{ route('user.profile.seeker') }}">Profile</a>
+                        </li>
+                        <li class="nav-item">
                             <a id="logout" class="nav-link" href="#">Logout</a>
                         </li>
                     @endif
