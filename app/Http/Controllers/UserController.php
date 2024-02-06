@@ -142,4 +142,24 @@ class UserController extends Controller
             return back()->with('error', 'Old password is incorrect');
         }
     }
+
+    public function uploadResume(Request $request)
+    {
+
+        try {
+            $this->validate($request, [
+                'resume' => 'required|mimes:pdf,doc,docx|max:2000'
+            ]);
+
+            $user = User::find(auth()->user()->id);
+
+            if (request()->hasFile('resume')) {
+                $resume = request()->file('resume')->store('resumes', 'public');
+                $user->update(['resume' => $resume]);
+            }
+            return back()->with('success', 'Resume uploaded successfully');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Something went wrong. Please try again later.');
+        }
+    }
 }

@@ -64,5 +64,25 @@
                 </div>
             </form>
         </div>
+
+        <div class="row justify-content-center">
+            <h2>Update your resume</h2>
+
+            <form action="{{ route('upload.resume') }}" method="post" enctype="multipart/form-data">@csrf
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="resume">Upload your resume</label>
+                        <input type="file" name="resume"
+                            class="form-control {{ $errors->has('resume') ? 'is-invalid' : '' }}"
+                            id="resume">
+                        @if ($errors->has('resume'))
+                            <span class="text-danger">{{ $errors->first('resume') }}</span>
+                        @endif
+                    </div>
+                    <div class="form-group mt-4">
+                        <button class="btn btn-success" type="submit">Update</button>
+                    </div>
+            </form>
+        </div>
     </div>
 @endsection
