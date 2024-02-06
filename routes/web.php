@@ -46,6 +46,7 @@ route::post('/logout', [UserController::class, 'logout'])->name('logout');
 Route::get('user/profile', [UserController::class, 'profile'])->name('user.profile');
 Route::get('user/profile/seeker', [UserController::class, 'seekerProfile'])->name('user.profile.seeker');
 Route::post('user/update/profile', [UserController::class, 'updateProfile'])->name('user.update.profile');
+Route::post('user/password', [UserController::class, 'changePassword'])->name('user.password')->middleware('auth');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('verified')->name('dashboard');
 Route::get('/verify', [DashboardController::class, 'verify'])->name('verification.notice');

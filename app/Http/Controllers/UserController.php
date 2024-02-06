@@ -125,4 +125,21 @@ class UserController extends Controller
             return back()->with('error', 'Something went wrong. Please try again later.');
         }
     }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|min:8|confirmed'
+        ]);
+
+        $user = User::find(auth()->user()->id);
+
+        if (password_verify($request->current_password, $user->password)) {
+            $user->update(['password' => bcrypt($request->password)]);
+            return back()->with('success', 'Password updated successfully');
+        } else {
+            return back()->with('error', 'Old password is incorrect');
+        }
+    }
 }

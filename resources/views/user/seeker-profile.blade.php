@@ -33,19 +33,30 @@
         <div class="row justify-content-center">
             <h2>Change your password</h2>
 
-            <form action="#" method="post">@csrf
+            <form action="{{ route('user.password') }}" method="post">@csrf
                 <div class="col-md-8">
                     <div class="form-group">
                         <label for="current_password">Your current password</label>
-                        <input type="password" name="current_password" class="form-control" id="current_password">
+                        <input type="password" name="current_password"
+                            class="form-control {{ $errors->has('current_password') ? 'is-invalid' : '' }}"
+                            id="current_password">
+                        @if ($errors->has('current_password'))
+                            <span class="text-danger">{{ $errors->first('current_password') }}</span>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label for="password">Your new password</label>
-                        <input type="password" class="form-control" name="password" id="password">
+                        <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}"
+                            name="password" id="password">
                     </div>
                     <div class="form-group">
                         <label for="password_confirmation">Confirm password</label>
-                        <input type="password" class="form-control" name="password_confirmation" id="password_confirmation">
+                        <input type="password"
+                            class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}"
+                            name="password_confirmation" id="password_confirmation">
+                        @if ($errors->has('password'))
+                            <span class="text-danger">{{ $errors->first('password') }}</span>
+                        @endif
                     </div>
                     <div class="form-group mt-4">
                         <button class="btn btn-success" type="submit">Update</button>
