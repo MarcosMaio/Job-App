@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostJobController;
 use App\Http\Controllers\SubscriptionController;
@@ -67,3 +68,5 @@ Route::post('job/store', [PostJobController::class, 'store'])->name('job.store')
 Route::get('job/{id}/edit', [PostJobController::class, 'edit'])->name('job.edit');
 Route::put('job/{id}/update', [PostJobController::class, 'update'])->name('job.update');
 Route::delete('job/{id}/delete', [PostJobController::class, 'destroy'])->name('job.delete');
+
+Route::get('applicants', [ApplicationController::class, 'index'])->name('applicants.index');
