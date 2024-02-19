@@ -17,23 +17,25 @@
         </div>
         <div class="container-fluid px-4">
             <h1 class="mt-4">Dashboard</h1>
-            <ol class="breadcrumb mb-4">
-                Hello, {{ auth()->user()->name }}
-                @if (!auth()->user()->billing_ends)
-                    @if (Auth::check() && auth()->user()->user_type == 'employer')
-                        <p>Your trial
-                            {{ now()->format('Y-m-d') > auth()->user()->user_trial ? 'was expired' : 'will expire' }} on
-                            {{ auth()->user()->user_trial }}</p>
+            <div class="d-flex align-items-start flex-column ">
+                <span>Hello, {{ auth()->user()->name }}.</span>
+                <ol class="breadcrumb mb-4">
+                    @if (!auth()->user()->billing_ends)
+                        @if (Auth::check() && auth()->user()->user_type == 'employer')
+                            <p>Your trial
+                                {{ now()->format('Y-m-d') > auth()->user()->user_trial ? 'was expired' : 'will expire' }} on
+                                {{ auth()->user()->user_trial }}.</p>
+                        @endif
                     @endif
-                @endif
 
-                @if (Auth::check() && auth()->user()->user_type == 'employer')
-                    <p>Your membership
-                        {{ now()->format('Y-m-d') > auth()->user()->billing_ends ? 'was expired' : 'will expire' }}
-                        on
-                        {{ auth()->user()->billing_ends }}</p>
-                @endif
-            </ol>
+                    @if (Auth::check() && auth()->user()->user_type == 'employer')
+                        <p>Your membership
+                            {{ now()->format('Y-m-d') > auth()->user()->billing_ends ? 'was expired' : 'will expire' }}
+                            on
+                            {{ auth()->user()->billing_ends }}.</p>
+                    @endif
+                </ol>
+            </div>
             <div class="row">
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-primary text-white mb-4">
