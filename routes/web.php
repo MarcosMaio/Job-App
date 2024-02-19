@@ -70,3 +70,5 @@ Route::put('job/{id}/update', [PostJobController::class, 'update'])->name('job.u
 Route::delete('job/{id}/delete', [PostJobController::class, 'destroy'])->name('job.delete');
 
 Route::get('applicants', [ApplicationController::class, 'index'])->name('applicants.index');
+Route::get('applicants/{listing:slug}', [ApplicationController::class, 'show'])->name('applicants.show');
+Route::post('shortlist/{listingId}/{userId}', [ApplicationController::class, 'shortlist'])->name('applicants.shortlist');
