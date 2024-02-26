@@ -44,8 +44,8 @@
                                 <a href="{{ Storage::url($user->resume) }}" class="btn btn-primary "
                                     target="_blank">Download
                                     Resume</a>
-                                <button type="submit"
-                                    class="$user->pivot->shortlisted ? 'btn btn-success' : 'btn btn-dark'">
+                                <button type="submit" {{ $user->pivot->shortlisted ? 'disabled' : '' }}
+                                    class="{{ $user->pivot->shortlisted ? 'btn btn-success' : 'btn btn-dark' }}">
                                     {{ $user->pivot->shortlisted ? 'Shortlisted' : 'Shortlist' }}
                                 </button>
                             </form>
