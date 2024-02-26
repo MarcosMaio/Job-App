@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\JobListingController;
 use App\Http\Controllers\PostJobController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UserController;
@@ -22,9 +23,7 @@ use Stripe\Subscription;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [JobListingController::class, 'index'])->name('index');
 
 
 
