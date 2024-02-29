@@ -26,7 +26,8 @@ class PostJobController extends Controller
 
     public function create()
     {
-        return view('job.create');
+        dd('here');
+        // return view('job.create');
     }
 
     public function store(JobPostRequest $request)

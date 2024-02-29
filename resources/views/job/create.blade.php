@@ -63,7 +63,7 @@
                         </div>
                         <div class="form-check">
                             <input type="radio" class="form-check-input" name="job_type" id="casual" value="Casual">
-                            <label for="casual" class="form-check-label">Casual</label>
+                            <label for="Casual" class="form-check-label">Casual</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" class="form-check-input" name="job_type" id="Contract" value="Contract">
