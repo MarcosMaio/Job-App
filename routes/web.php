@@ -2,15 +2,13 @@
 
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\fileUploadController;
 use App\Http\Controllers\JobListingController;
 use App\Http\Controllers\PostJobController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UserController;
-use App\Http\Middleware\isPremiumUser;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
-use Stripe\Subscription;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +22,9 @@ use Stripe\Subscription;
 */
 
 Route::get('/', [JobListingController::class, 'index'])->name('index');
+Route::get('/job/{listing:slug}', [JobListingController::class, 'show'])->name('job.show');
 
-
+Route::post ('/resume/upload', [fileUploadController::class, 'store'])->middleware('auth');
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
@@ -71,3 +70,4 @@ Route::delete('job/{id}/delete', [PostJobController::class, 'destroy'])->name('j
 Route::get('applicants', [ApplicationController::class, 'index'])->name('applicants.index');
 Route::get('applicants/{listing:slug}', [ApplicationController::class, 'show'])->name('applicants.show');
 Route::post('shortlist/{listingId}/{userId}', [ApplicationController::class, 'shortlist'])->name('applicants.shortlist');
+Route::post('application/{listingId}/submit', [ApplicationController::class, 'apply'])->name('application.submit');
