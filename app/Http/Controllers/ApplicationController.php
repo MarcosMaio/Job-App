@@ -41,4 +41,12 @@ class ApplicationController extends Controller
         }
         return back()->with('error', 'An error occurred');
     }
+
+    public function apply($listingId)
+    {
+        // dd($listingId);
+        $user = auth()->user();
+        $user->listings()->syncWithoutDetaching($listingId);
+        return back()->with('success', 'Application submitted successfully');
+    }
 }
