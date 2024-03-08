@@ -8,6 +8,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -87,8 +88,13 @@ class UserController extends Controller
                 return redirect()->intended('/');
             }
         } else {
-            return "wrong email or password";
+            return back()->with('error', 'wrong email or password');
         }
+    }
+
+    public function create()
+    {
+        return view('job.create');
     }
 
     public function logout()
@@ -161,5 +167,12 @@ class UserController extends Controller
         } catch (\Exception $e) {
             return back()->with('error', 'Something went wrong. Please try again later.');
         }
+    }
+
+    public function jobApplied()
+    {
+        $users =  User::with('listings')->where('id',auth()->user()->id)->get();
+
+        return view('user.applied',compact('users'));
     }
 }

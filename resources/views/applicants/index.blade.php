@@ -12,10 +12,10 @@
                         <thead>
                             <tr>
                                 <th>Title</th>
-                                <th>Created on</th>
-                                <th>Total applicants</th>
+                                <th>Created On</th>
+                                <th>Total Applicants</th>
                                 <th>View Job</th>
-                                <th>View applicant</th>
+                                <th>View Applicant</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -24,7 +24,7 @@
                                     <td>{{ $listing->title }}</td>
                                     <td>{{ $listing->created_at->format('Y-m-d') }}</td>
                                     <td>{{ $listing->users_count }}</td>
-                                    <td>View</td>
+                                    <td><a href="{{ route('job.show', $listing->slug) }}">view</a></td>
                                     <td><a href="{{ route('applicants.show', $listing->slug) }}">view</a></td>
                                 </tr>
                             @endforeach

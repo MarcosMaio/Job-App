@@ -11,7 +11,6 @@ use Illuminate\Support\Str;
 
 class PostJobController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -26,8 +25,7 @@ class PostJobController extends Controller
 
     public function create()
     {
-        dd('here');
-        // return view('job.create');
+        return view('job.create');
     }
 
     public function store(JobPostRequest $request)

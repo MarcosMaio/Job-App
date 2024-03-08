@@ -51,14 +51,14 @@
                     <div class="form-group">
                         <label>Job types</label>
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" name="job_type" id="Fulltime" value="Fulltime"
-                                {{ $id->job_type === 'Fulltime' ? 'checked' : '' }}>
-                            <label for="Fulltime" class="form-check-label">Fulltime</label>
+                            <input type="radio" class="form-check-input" name="job_type" id="Fulltime" value="Full-Time"
+                                {{ $id->job_type === 'Full-Time' ? 'checked' : '' }}>
+                            <label for="Fulltime" class="form-check-label">Full-Time</label>
                         </div>
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" name="job_type" id="Parttime" value="Parttime"
-                                {{ $id->job_type === 'Parttime' ? 'checked' : '' }}>
-                            <label for="Parttime" class="form-check-label">Parttime</label>
+                            <input type="radio" class="form-check-input" name="job_type" id="Parttime" value="Part-Time"
+                                {{ $id->job_type === 'Part-Time' ? 'checked' : '' }}>
+                            <label for="Parttime" class="form-check-label">Part-Time</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" class="form-check-input" name="job_type" id="casual" value="Casual"

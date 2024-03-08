@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Listing;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class JobListingController extends Controller
 {
@@ -35,10 +36,10 @@ class JobListingController extends Controller
 
         switch ($jobType) {
             case 'full-time':
-                $listing->where('job_type', 'Fulltime');
+                $listing->where('job_type', 'Full-Time');
                 break;
             case 'part-time':
-                $listing->where('job_type', 'Parttime');
+                $listing->where('job_type', 'Part-Time');
                 break;
             case 'casual':
                 $listing->where('job_type', 'Casual');
@@ -49,17 +50,24 @@ class JobListingController extends Controller
         }
 
         $jobs = $listing->with('profile')->get();
+        // dd($jobs);
         return view('home', compact('jobs'));
     }
 
     public function show(Listing $listing)
     {
-        return view('job.show', compact('listing'));
+        // dd($listing->id);
+        $verifiyIfAlredyApply = DB::table('listing_user')->where('listing_id', $listing->id)->where('user_id', auth()->user()->id)->get();
+        // dd($verifiyIfAlredyApply);
+        return view('job.show', [
+            'listing' => $listing,
+            'verifiyIfAlredyApply' => $verifiyIfAlredyApply
+        ]);
     }
 
     public function company($id)
     {
-        $company = User::with('jobs')->where('id', $id)->where('user_type','employer')->first();
+        $company = User::with('jobs')->where('id', $id)->where('user_type', 'employer')->first();
         return view('company', compact('company'));
     }
 }

@@ -48,6 +48,8 @@ Route::get('user/profile/seeker', [UserController::class, 'seekerProfile'])->nam
 Route::post('user/update/profile', [UserController::class, 'updateProfile'])->name('user.update.profile');
 Route::post('user/password', [UserController::class, 'changePassword'])->name('user.password')->middleware('auth');
 Route::post('upload/resume', [UserController::class, 'uploadResume'])->name('upload.resume')->middleware('auth');
+Route::get('user/job/applied', [UserController::class, 'jobApplied'])->name('job.applied')
+->middleware(['auth','verified']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('verified')->name('dashboard');
 Route::get('/verify', [DashboardController::class, 'verify'])->name('verification.notice');
@@ -62,7 +64,7 @@ Route::get('/payment/success', [SubscriptionController::class, 'paymentSuccess']
 Route::get('/payment/cancel', [SubscriptionController::class, 'paymentCancel'])->name('payment.cancel');
 
 Route::get('job', [PostJobController::class, 'index'])->name('job.index');
-Route::get('job/create', [PostJobController::class, 'create'])->name('job.create');
+Route::get('jobcreate', [PostJobController::class, 'create'])->name('job.create');
 Route::post('job/store', [PostJobController::class, 'store'])->name('job.store');
 Route::get('job/{id}/edit', [PostJobController::class, 'edit'])->name('job.edit');
 Route::put('job/{id}/update', [PostJobController::class, 'update'])->name('job.update');

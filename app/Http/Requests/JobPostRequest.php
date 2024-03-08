@@ -23,7 +23,7 @@ class JobPostRequest extends FormRequest
     {
         return [
             'title' => 'required|min:5',
-            'feature_image' => 'required|mimes:jpg,jpeg,png|image|max:2048',
+            'feature_image' => 'required|mimes:jpg,jpeg,png|image',
             'description' => 'required|min:10',
             'roles' => 'required|min:10',
             'job_type' => 'required',

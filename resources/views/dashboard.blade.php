@@ -16,60 +16,58 @@
             @endif
         </div>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Dashboard</h1>
-            <div class="d-flex align-items-start flex-column ">
-                <span>Hello, {{ auth()->user()->name }}.</span>
-                <ol class="breadcrumb mb-4">
-                    @if (!auth()->user()->billing_ends)
-                        @if (Auth::check() && auth()->user()->user_type == 'employer')
-                            <p>Your trial
-                                {{ now()->format('Y-m-d') > auth()->user()->user_trial ? 'was expired' : 'will expire' }} on
-                                {{ auth()->user()->user_trial }}.</p>
-                        @endif
-                    @endif
-
-                    @if (Auth::check() && auth()->user()->user_type == 'employer')
-                        <p>Your membership
-                            {{ now()->format('Y-m-d') > auth()->user()->billing_ends ? 'was expired' : 'will expire' }}
-                            on
-                            {{ auth()->user()->billing_ends }}.</p>
-                    @endif
-                </ol>
-            </div>
+			<h1 class="mt-4">Dashboard</h1>
+			<p>Hello, {{ auth()->user()->name }}
+			<p>
+				@if(! auth()->user()->billing_ends)
+				@if(Auth::check() && auth()->user()->user_type == 'employer')
+			<p>Your trial {{now()->format('Y-m-d') > auth()->user()->user_trial ? 'was expired': 'will expire'}} on {{auth()->user()->user_trial}}</p>
+			@endif
+			@endif
+			@if(Auth::check() && auth()->user()->user_type == 'employer' && auth()->user()->plan != null)
+			<p>Your membership {{now()->format('Y-m-d') > auth()->user()->billing_ends ? 'was expired': 'will expire'}} on {{auth()->user()->billing_ends}}</p>
+			@endif
             <div class="row">
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-primary text-white mb-4">
-                        <div class="card-body">Primary Card</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                <div class="col-md-4 col-xl-3">
+                    <div class="card bg-c-blue order-card">
+                        <div class="card-block">
+                            <h6 class="m-b-20">Total jobs posted</h6>
+                            <h2 class="text-right"><i
+                                    class="fa fa-cart-plus f-left"></i>&nbsp;&nbsp;<span>{{ \App\Models\Listing::where('user_id', auth()->id())->count() }}</span>
+                            </h2>
+                            <p class="m-b-0">Your jobs<span
+                                    class="f-right">{{ \App\Models\Listing::where('user_id', auth()->id())->count() }}</span>
+                            </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-warning text-white mb-4">
-                        <div class="card-body">Warning Card</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+
+                <div class="col-md-4 col-xl-3">
+                    <div class="card bg-c-green order-card">
+                        <div class="card-block">
+                            <h6 class="m-b-20">Company Profile</h6>
+                            <h2 class="text-right"><i class="fa fa-rocket f-left"></i><span>&nbsp;&nbsp;1</span></h2>
+                            <p class="m-b-0">Your profile<span class="f-right">1</span></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-success text-white mb-4">
-                        <div class="card-body">Success Card</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+
+                <div class="col-md-4 col-xl-3">
+                    <div class="card bg-c-yellow order-card">
+                        <div class="card-block">
+                            <h6 class="m-b-20">Subscription</h6>
+                            <h2 class="text-right"><i class="fa fa-refresh f-left"></i><span>$80</span></h2>
+                            <p class="m-b-0">Monthly<span class="f-right"></span></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-danger text-white mb-4">
-                        <div class="card-body">Danger Card</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+
+                <div class="col-md-4 col-xl-3">
+                    <div class="card bg-c-pink order-card">
+                        <div class="card-block">
+                            <h6 class="m-b-20">Total applicants</h6>
+                            <h2 class="text-right"><i class="fa fa-credit-card f-left"></i><span>&nbsp;&nbsp;0</span></h2>
+                            <p class="m-b-0">Your applicants<span class="f-right">0</span></p>
                         </div>
                     </div>
                 </div>
@@ -79,7 +77,7 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-chart-area me-1"></i>
-                            Area Chart Example
+                            Area Chart
                         </div>
                         <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas>
                         </div>
@@ -89,7 +87,7 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-chart-bar me-1"></i>
-                            Bar Chart Example
+                            Bar Chart
                         </div>
                         <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas>
                         </div>
@@ -99,7 +97,7 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    DataTable Example
+                    DataTable
                 </div>
                 <div class="card-body">
                     <table id="datatablesSimple">
@@ -586,4 +584,53 @@
             </div>
         </div>
     </div>
+
+    <style>
+        .order-card {
+            color: #fff;
+        }
+
+        .bg-c-blue {
+            background: linear-gradient(45deg, #4099ff, #73b4ff);
+        }
+
+        .bg-c-green {
+            background: linear-gradient(45deg, #2ed8b6, #59e0c5);
+        }
+
+        .bg-c-yellow {
+            background: linear-gradient(45deg, #FFB64D, #ffcb80);
+        }
+
+        .bg-c-pink {
+            background: linear-gradient(45deg, #FF5370, #ff869a);
+        }
+
+
+        .card {
+            border-radius: 5px;
+            -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+            box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+            border: none;
+            margin-bottom: 30px;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .card .card-block {
+            padding: 25px;
+        }
+
+        .order-card i {
+            font-size: 26px;
+        }
+
+        .f-left {
+            float: left;
+        }
+
+        .f-right {
+            float: right;
+        }
+    </style>
 @endsection
