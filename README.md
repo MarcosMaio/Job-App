@@ -4,7 +4,7 @@ Projeto de site E-commerce produzido a fim de concluir o desafio do site FrontEn
 
 
 
-![site illustrato](https://drive.google.com/file/d/1ztzNZF6bJCILj3INzQ5l5mTLnPy4X7IH/view)
+![site illustrato](https://drive.google.com/file/d/1ztzNZF6bJCILj3INzQ5l5mTLnPy4X7IH/view?usp=sharing)
 
 # Funcionalidades:
 
