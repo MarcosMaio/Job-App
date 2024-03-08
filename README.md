@@ -2,7 +2,7 @@
 
 Projeto de site E-commerce produzido a fim de concluir o desafio do site FrontEnd Mentor: https://www.frontendmentor.io/challenges/audiophile-ecommerce-website-C8cuSd_wx.
 
-![site illustrato](https://drive.google.com/file/d/1ztzNZF6bJCILj3INzQ5l5mTLnPy4X7IH/view?usp=sharing)
+<img width="500" src"assets/to_readme/Capture.png">
 
 # Funcionalidades:
 
