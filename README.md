@@ -33,6 +33,8 @@ Em resumo, o Tech Jobs oferece uma plataforma abrangente que conecta pessoas em 
 - PHP
 - Laravel
 - JavaScript
+- JQuery
+- Bootstrap
 - MySql
 - SQL
 - Sripe-Payments-Api
