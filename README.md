@@ -2,6 +2,8 @@
 
 Projeto de site E-commerce produzido a fim de concluir o desafio do site FrontEnd Mentor: https://www.frontendmentor.io/challenges/audiophile-ecommerce-website-C8cuSd_wx.
 
+https://github.com/MarcosMaio/Job-App/assets/120725100/aad39353-39c1-4be7-a1fd-b3199fbd4783
+
 ![site illustrato](to_readme/site_preview.PNG)
 
 # Funcionalidades:
